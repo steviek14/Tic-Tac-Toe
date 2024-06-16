@@ -1,0 +1,59 @@
+
+body, html{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdbdfc;
+}
+
+.gameContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(132, 231, 243);
+    padding: 20px;
+    border: 5px dotted #5710ad;
+}
+
+
+#GameName, #statusText{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    font-style: oblique;
+    text-shadow: 1px 2px 2px #b489e9;
+    border: 2px dotted #5710ad;
+}
+
+
+.game-board{
+    display: grid;
+    grid-template: repeat(3, 100px) /repeat(3, 100px);
+    gap: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.box, #restartBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c0bdfd;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.box {
+    border: 3px solid #5710ad;
+    font-size: 80px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    cursor: pointer;
+}
+
+
+#restartBtn{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
