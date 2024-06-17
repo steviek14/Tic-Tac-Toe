@@ -4,6 +4,7 @@ const boxes = document.querySelectorAll(".box");
 const statusText = document.querySelector("#statusText");
 const restartBtn = document.querySelector('#restartBtn')
 
+//tic tac toe win conditions array 
 const winConditions =[
     [0, 1, 2], // horizontal box indices
     [3, 4, 5], // horizonal
@@ -22,11 +23,11 @@ let running = false; //boolean variable to check if game is running
 
 //function to start game 
 function startGame(){
-    //each box will have an eventlistener to listen for the box clicked, then return a callback of boxClicked 
+    //each box will have an eventlistener to listen for the box clicked, then return a callback of function boxClicked 
     boxes.forEach(box => box.addEventListener("click", boxClicked)) 
     //The restart button will restart the game once it is clicked, this function is initalized at the start of the game 
     restartBtn.addEventListener("click", restartGame);
-    //The header thats our status will update to declare which player's turn it is 
+    //The header thats our status will update to declare which player's turn it is beginning with X 
     statusText.textContent = `${currentPlayer}'s turn`;
     //setting the game to running status to true once the startGame() function is called
     running = true;
@@ -34,7 +35,7 @@ function startGame(){
 //function for what we want to happen when a box is clicked
 function boxClicked(){
     //retrieving each boxes index either 0-8 initalized in the HTML file 
-    const cellIndex = this.getAttribute('cellIndex');
+    const cellIndex = this.getAttribute('cellIndex'); //basically saying hey get the cellIndex attribute of this box 
 
     //an if statement to check whether the box is empty and the game is running to determine if the function should continue 
     if (placeholders[cellIndex] != "" || !running ){ //if each boxes placeholder is NOT empty and the game is NOT running - the function will return and not run 
@@ -55,7 +56,7 @@ function updateBoxForTurn(box, index){
     }
    
 }
-//function to switch between whose turn it is
+//function to switch between whose turn it is -called in checkWinner 
 function changePlayer(){
     if(currentPlayer === "X"){
         currentPlayer = "O";
@@ -71,9 +72,10 @@ function checkWinner(){
 
     for(let i = 0; i < winConditions.length; i++){ //for loop to iterate through the winConditions array 
         const condition = winConditions[i]; //get the current win condition 
-        const cellA = placeholders[condition[0]];
-        const cellB = placeholders[condition[1]];
-        const cellC = placeholders[condition[2]];
+        const cellA = placeholders[condition[0]]; //retrieving the value from placeholders using the first condition's index
+        const cellB = placeholders[condition[1]];//retrieving the value from placeholders using the second condition's index
+        const cellC = placeholders[condition[2]];//retrieving the value from placeholders using the third condition's index
+
         //if any of the cells are empty, continue to the next iteration of the loop 
         if (cellA == "" || cellB == "" || cellC == ""){
             continue;
@@ -84,6 +86,7 @@ function checkWinner(){
             break;
         }
     }
+
     //if a win condition was met, update the status text and stop the game 
     if (roundWon){
         statusText.textContent = `${currentPlayer} wins!` //displays winning message 
@@ -109,6 +112,11 @@ function restartGame(){
     
 }
 startGame();
+
+
+
+
+
 /*Explanation Breakdown:
 1. Initalization: 
     - The HTML elements are selected and stored in variables using querySelectorAll and querySelector
